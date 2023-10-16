@@ -6,7 +6,6 @@ import modbus_tk.defines as cst
 from modbus_tk import modbus_rtu
 import threading
 import struct
-import numpy as np
 import paho.mqtt.client as mqtt
 import json
 import time
