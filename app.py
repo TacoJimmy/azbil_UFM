@@ -11,23 +11,22 @@ import json
 import time
 import schedule 
 
-try:
-    #master = modbus_rtu.RtuMaster(serial.Serial(port='COM18', baudrate=9600, bytesize=8, parity="N", stopbits=1, xonxoff=0))
-    master = modbus_rtu.RtuMaster(serial.Serial(port='/dev/ttyS1', baudrate=9600, bytesize=8, parity="N", stopbits=1, xonxoff=0))
-    master.set_timeout(5.0)
-    master.set_verbose(True)
-except:
-    pass
+
+#master = modbus_rtu.RtuMaster(serial.Serial(port='COM18', baudrate=9600, bytesize=8, parity="N", stopbits=1, xonxoff=0))
+master = modbus_rtu.RtuMaster(serial.Serial(port='/dev/ttyS1', baudrate=9600, bytesize=8, parity="N", stopbits=1, xonxoff=0))
+master.set_timeout(5.0)
+master.set_verbose(True)
+
 
 def modbus_connection():
     global master
-    try:
+    #try:
         #master = modbus_rtu.RtuMaster(serial.Serial(port='COM18', baudrate=9600, bytesize=8, parity="N", stopbits=1, xonxoff=0))
-        master = modbus_rtu.RtuMaster(serial.Serial(port='/dev/ttyS1', baudrate=9600, bytesize=8, parity="N", stopbits=1, xonxoff=0))
-        master.set_timeout(5.0)
-        master.set_verbose(True)
-    except:
-        pass
+    master = modbus_rtu.RtuMaster(serial.Serial(port='/dev/ttyS1', baudrate=9600, bytesize=8, parity="N", stopbits=1, xonxoff=0))
+    master.set_timeout(5.0)
+    master.set_verbose(True)
+    #except:
+        #pass
 
 def Current_ms():
     time_stamp_s = int(time.time()) # 轉成時間戳
@@ -147,7 +146,7 @@ def Publish_UFM():
         print (client.publish("v1/devices/me/telemetry", json.dumps(payload_iaq)))
         time.sleep(5)
     except:
-        pass
+        modbus_connection()
 
 
 schedule.every(5).seconds.do(Publish_UFM)
