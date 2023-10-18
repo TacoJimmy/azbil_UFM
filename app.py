@@ -130,15 +130,15 @@ def GatActiveData():
         flow_VolumFlow_T = round(Active_Open[0]/100,1)
 
         #2暫態熱量(GJ/hr)
-        flow_EnergyFlow = 0
-        flow_EnergyFlow_T = 0
+        flow_EnergyFlow = master.execute(1, cst.READ_HOLDING_REGISTERS, 4104, 1)
+        flow_EnergyFlow_T = flow_EnergyFlow[0]
 
         #3流體速度(GJ/hr)
         flow_flowrate = master.execute(1, cst.READ_HOLDING_REGISTERS, 4098, 1)
         flow_flowrate_T = flow_flowrate[0]
 
         #4正累積熱量(GJ)
-        flow_POSEnergy = 0
+        flow_POSEnergy = master.execute(1, cst.READ_HOLDING_REGISTERS, 4098, 1)
         flow_POSEnergy_T = 0
 
         #5負累積熱量(GJ)
