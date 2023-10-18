@@ -26,7 +26,8 @@ def modbus_connection():
         master.set_timeout(5.0)
         master.set_verbose(True)
     except:
-        pass
+        #pass
+        print("error1")
 
 def Current_ms():
     time_stamp_s = int(time.time()) # 轉成時間戳
@@ -116,14 +117,12 @@ def GatData():
                 flow_temp_Supply,
                 flow_temp_Return)
     except:
+        print("error2")
         modbus_connection()
+        
 
 def GatActiveData():
-    #try:
-        #global master
-        #master = modbus_rtu.RtuMaster(serial.Serial(port='/dev/ttyS1', baudrate=9600, bytesize=8, parity="N", stopbits=1, xonxoff=0))
-        #master.set_timeout(500.0)
-        #master.set_verbose(True)
+    try:
         
         #1暫態體積流率(m3/hr)
         Active_Open = master.execute(1, cst.READ_HOLDING_REGISTERS, 4097, 1)
@@ -180,7 +179,8 @@ def GatActiveData():
                 flow_TotalVolume_T,
                 Active_Pre_In_T,
                 Active_Pre_Out_T)
-    #except:
+    except:
+        print("error3")
         #pass
 
 
@@ -242,8 +242,8 @@ def Publish_ActiveValue():
     except:
         modbus_connection()
 
-#schedule.every(10).seconds.do(Publish_UFM)
-#schedule.every(10).seconds.do(Publish_ActiveValue)
+schedule.every(10).seconds.do(Publish_UFM)
+schedule.every(10).seconds.do(Publish_ActiveValue)
 
 if __name__ == '__main__':
     while True:
