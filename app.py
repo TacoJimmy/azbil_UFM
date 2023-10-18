@@ -26,8 +26,8 @@ def modbus_connection():
         master.set_timeout(5.0)
         master.set_verbose(True)
     except:
-        #pass
-        print("error1")
+        pass
+        
 
 def Current_ms():
     time_stamp_s = int(time.time()) # 轉成時間戳
@@ -117,7 +117,6 @@ def GatData():
                 flow_temp_Supply,
                 flow_temp_Return)
     except:
-        print("error2")
         modbus_connection()
         
 
@@ -180,9 +179,7 @@ def GatActiveData():
                 Active_Pre_In_T,
                 Active_Pre_Out_T)
     except:
-        print("error3")
-        #pass
-
+        modbus_connection()
 
 
 def Publish_UFM():
