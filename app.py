@@ -162,11 +162,11 @@ def GatActiveData():
         flow_TotalVolume_T = 0
     
         #供水溫度(degC)
-        Active_Pre_In = master.execute(1, cst.READ_HOLDING_REGISTERS, 4102, 1)
+        Active_Pre_In = master.execute(1, cst.READ_HOLDING_REGISTERS, 4100, 1)
         Active_Pre_In_T = Active_Pre_In[0]
 
         #回水溫度(degC)
-        Active_Pre_Out = master.execute(1, cst.READ_HOLDING_REGISTERS, 4103, 1)
+        Active_Pre_Out = master.execute(1, cst.READ_HOLDING_REGISTERS, 4101, 1)
         Active_Pre_Out_T = Active_Pre_Out[0]
 
         return (flow_VolumFlow_T, 
