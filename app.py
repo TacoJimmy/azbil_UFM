@@ -242,8 +242,8 @@ def Publish_ActiveValue():
     except:
         modbus_connection()
 
-schedule.every(10).seconds.do(Publish_UFM)
-schedule.every(10).seconds.do(Publish_ActiveValue)
+schedule.every(1).minutes.do(Publish_UFM)
+schedule.every(1).minutes.do(Publish_ActiveValue)
 
 if __name__ == '__main__':
     while True:
