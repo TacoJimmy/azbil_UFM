@@ -122,7 +122,7 @@ def GatActiveData():
     #try:
         global master
         master = modbus_rtu.RtuMaster(serial.Serial(port='/dev/ttyS1', baudrate=9600, bytesize=8, parity="N", stopbits=1, xonxoff=0))
-        master.set_timeout(5.0)
+        master.set_timeout(500.0)
         master.set_verbose(True)
         
         #1暫態體積流率(m3/hr)
