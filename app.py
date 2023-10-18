@@ -61,47 +61,47 @@ def int2long(a,b):
 def GatData():
     try:
         #1暫態體積流率(m3/hr)
-        flow_VolumFlow = master.execute(1, cst.READ_HOLDING_REGISTERS, 1, 2)
+        flow_VolumFlow = master.execute(2, cst.READ_HOLDING_REGISTERS, 1, 2)
         flow_VolumFlow_T = round(int2float(flow_VolumFlow[1], flow_VolumFlow[0]),1)
 
         #2暫態熱量(GJ/hr)
-        flow_EnergyFlow = master.execute(1, cst.READ_HOLDING_REGISTERS, 3, 2)
+        flow_EnergyFlow = master.execute(2, cst.READ_HOLDING_REGISTERS, 3, 2)
         flow_EnergyFlow_T = round(int2float(flow_EnergyFlow[1], flow_EnergyFlow[0]),1)
 
         #3流體速度(GJ/hr)
-        flow_flowrate = master.execute(1, cst.READ_HOLDING_REGISTERS, 5, 2)
+        flow_flowrate = master.execute(2, cst.READ_HOLDING_REGISTERS, 5, 2)
         flow_flowrate_T = round(int2float(flow_flowrate[1], flow_flowrate[0]),1)
 
         #4正累積熱量(GJ)
-        flow_POSEnergy = master.execute(1, cst.READ_HOLDING_REGISTERS, 121, 2)
+        flow_POSEnergy = master.execute(2, cst.READ_HOLDING_REGISTERS, 121, 2)
         flow_POSEnergy_T = round(int2float(flow_POSEnergy[1], flow_POSEnergy[0]),2)
 
         #5負累積熱量(GJ)
-        flow_NEGEnergy = master.execute(1, cst.READ_HOLDING_REGISTERS, 123, 2)
+        flow_NEGEnergy = master.execute(2, cst.READ_HOLDING_REGISTERS, 123, 2)
         flow_NEGEnergy_T = round(int2float(flow_NEGEnergy[1], flow_NEGEnergy[0]),2)
 
         #6淨累積熱量(GJ)
-        flow_TotalEnergy = master.execute(1, cst.READ_HOLDING_REGISTERS, 119, 2)
+        flow_TotalEnergy = master.execute(2, cst.READ_HOLDING_REGISTERS, 119, 2)
         flow_TotalEnergy_T = round(int2float(flow_TotalEnergy[1], flow_TotalEnergy[0]),2)
 
         #7正累積流量
-        flow_POSVolume = master.execute(1, cst.READ_HOLDING_REGISTERS, 115, 2)
+        flow_POSVolume = master.execute(2, cst.READ_HOLDING_REGISTERS, 115, 2)
         flow_POSVolume_T = round(int2float(flow_POSVolume[1], flow_POSVolume[0]),2)
 
         #8負累積流量
-        flow_NEGVolume = master.execute(1, cst.READ_HOLDING_REGISTERS, 117, 2)
+        flow_NEGVolume = master.execute(2, cst.READ_HOLDING_REGISTERS, 117, 2)
         flow_MoonVolume_T = round(int2float(flow_NEGVolume[1], flow_NEGVolume[0]),2)
 
         #9淨累積流量
-        flow_TotalVolume = master.execute(1, cst.READ_HOLDING_REGISTERS, 113, 2)
+        flow_TotalVolume = master.execute(2, cst.READ_HOLDING_REGISTERS, 113, 2)
         flow_TotalVolume_T = round(int2float(flow_TotalVolume[1], flow_TotalVolume[0]),2)
     
         #供水溫度(degC)
-        flow_temp_in = master.execute(1, cst.READ_HOLDING_REGISTERS, 33, 2)
+        flow_temp_in = master.execute(2, cst.READ_HOLDING_REGISTERS, 33, 2)
         flow_temp_Supply = round(int2float(flow_temp_in[1], flow_temp_in[0]),1)
 
         #回水溫度(degC)
-        flow_temp_out = master.execute(1, cst.READ_HOLDING_REGISTERS, 35, 2)
+        flow_temp_out = master.execute(2, cst.READ_HOLDING_REGISTERS, 35, 2)
         flow_temp_Return = round(int2float(flow_temp_out[1], flow_temp_out[0]),1)
 
         return (flow_VolumFlow_T, 
@@ -124,6 +124,7 @@ def GatData():
 def Publish_UFM():
     try:
         UFM_Data = GatData()
+        print (UFM_Data)
         client = mqtt.Client()
         client.on_connect
         client.username_pw_set('HzpJuNmQs0Zahu76dvBW','XXX')
