@@ -237,10 +237,13 @@ def Publish_ActiveValue():
     except:
         modbus_connection()
 
-schedule.every(10).seconds.do(Publish_UFM)
-schedule.every(10).seconds.do(Publish_ActiveValue)
+#schedule.every(10).seconds.do(Publish_UFM)
+#schedule.every(10).seconds.do(Publish_ActiveValue)
 
 if __name__ == '__main__':
     while True:
-        schedule.run_pending()
-        time.sleep(1)
+        #schedule.run_pending()
+        #time.sleep(1)
+        print (GatActiveData())
+
+        time.sleep(5)
