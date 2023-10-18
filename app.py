@@ -185,7 +185,7 @@ def GatActiveData():
 def Publish_UFM():
     try:
         UFM_Data = GatData()
-        print (UFM_Data)
+        #print (UFM_Data)
         client = mqtt.Client()
         client.on_connect
         client.username_pw_set('HzpJuNmQs0Zahu76dvBW','XXX')
@@ -208,13 +208,13 @@ def Publish_UFM():
         print (client.publish("v1/devices/me/telemetry", json.dumps(payload_iaq)))
         time.sleep(5)
     except:
-        modbus_connection()
+        pass
 
 
 def Publish_ActiveValue():
     try:
         Active_Data = GatActiveData()
-        print (Active_Data)
+        #print (Active_Data)
         client = mqtt.Client()
         client.on_connect
         client.username_pw_set('PLA96W5rfGbpAYtClugs','XXX')
@@ -237,7 +237,7 @@ def Publish_ActiveValue():
         print (client.publish("v1/devices/me/telemetry", json.dumps(payload_iaq)))
         time.sleep(5)
     except:
-        modbus_connection()
+        pass
 
 schedule.every(1).minutes.do(Publish_UFM)
 schedule.every(1).minutes.do(Publish_ActiveValue)
