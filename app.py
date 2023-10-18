@@ -139,14 +139,14 @@ def GatActiveData():
 
         #4正累積熱量(GJ)
         flow_POSEnergy = master.execute(1, cst.READ_HOLDING_REGISTERS, 4098, 1)
-        flow_POSEnergy_T = 0
+        flow_POSEnergy_T = round(int2long(flow_POSEnergy[1], flow_POSEnergy[0]),1)
 
         #5負累積熱量(GJ)
         flow_NEGEnergy = 0
         flow_NEGEnergy_T = 0
 
         #6淨累積熱量(GJ)
-        flow_TotalEnergy = 0
+        flow_TotalEnergy = master.execute(1, cst.READ_HOLDING_REGISTERS, 4106, 1)
         flow_TotalEnergy_T = 0
 
         #7正累積流量
