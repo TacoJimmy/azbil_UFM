@@ -119,7 +119,7 @@ def GatData():
         modbus_connection()
 
 def GatActiveData():
-    try:
+    #try:
         global master
         master = modbus_rtu.RtuMaster(serial.Serial(port='/dev/ttyS1', baudrate=9600, bytesize=8, parity="N", stopbits=1, xonxoff=0))
         master.set_timeout(5.0)
@@ -180,8 +180,8 @@ def GatActiveData():
                 flow_TotalVolume_T,
                 flow_temp_Supply,
                 flow_temp_Return)
-    except:
-        pass
+    #except:
+        #pass
 
 
 
